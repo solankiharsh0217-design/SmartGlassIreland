@@ -1,26 +1,105 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-paper: #fafbf9;
+  --color-surface-white: #ffffff;
+  --color-surface-low: #f1f4f0;
+  --color-surface-container: #e6ece5;
+  --color-text-primary: #16211b;
+  --color-text-muted: #5a6b60;
+  --color-badge-bg: #eef3ed;
+  --color-badge-text: #33463a;
+  --color-border-hairline: #dde5dc;
+  --color-border-subtle: rgba(22, 33, 27, 0.08);
+  --color-brand: #2e5b34;
+  --color-brand-deep: #1e4023;
+  --color-brand-bright: #57a05e;
+  --color-highlight: #bfe3c2;
+  --color-sage-tint: #e7f0e8;
+  --color-ink: #101711;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  overflow-x: clip;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: #2e5b34;
+  color: #fff;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* architectural grid backdrop */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgba(22, 33, 27, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 33, 27, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.blueprint-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* full-bleed breakout: escapes the max-w container to span the viewport */
+.breakout {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #dde5dc;
+  border-radius: 9999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none !important;
+  }
 }
