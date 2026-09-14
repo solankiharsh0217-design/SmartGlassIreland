@@ -69,12 +69,16 @@ export default function PdlcDemo() {
               <span
                 key={m}
                 className={`relative z-10 flex items-center justify-center gap-1.5 text-[12px] font-semibold transition-colors duration-300 ${
-                  mode === m ? (clear ? "text-white" : "text-text-primary") : "text-text-muted"
+                  mode === m
+                    ? "text-text-primary"
+                    : clear
+                      ? "text-white/55"
+                      : "text-text-muted"
                 }`}
               >
                 <span
                   className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
-                    mode === m ? (clear ? "bg-highlight" : "bg-brand") : "bg-text-muted/40"
+                    mode === m ? "bg-brand" : "bg-text-muted/40"
                   }`}
                 />
                 {COPY[m].tab}
